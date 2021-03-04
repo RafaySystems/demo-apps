@@ -39,4 +39,4 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: nginx-config
+  name: {{ include "webserver.fullname" . }}

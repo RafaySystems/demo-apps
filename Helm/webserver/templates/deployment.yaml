@@ -50,7 +50,7 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: nginx-config
+          name: {{ include "webserver.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
