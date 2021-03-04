@@ -7,13 +7,13 @@ replicaCount: 1
 nginx:
   name: frontend
   image:
-    repository: nginx
+    repository: registry.rafay-edge.net/rafay/nginx
     tag: 1.18-alpine
     pullPolicy: IfNotPresent
 webapp:
   name: webapp
   image:
-    repository: training/webapp
+    repository: registry.rafay-edge.net/rafay/training/webapp
     tag: latest
     pullPolicy: IfNotPresent
 
