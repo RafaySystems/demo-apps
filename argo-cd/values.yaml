@@ -1785,7 +1785,7 @@ server:
     # -- Server service labels
     labels: {}
     # -- Server service type
-    type: LoadBalancer
+    type: ClusterIP
     # -- Server service http port for NodePort service type (only if `server.service.type` is set to "NodePort")
     nodePortHttp: 30080
     # -- Server service https port for NodePort service type (only if `server.service.type` is set to "NodePort")
@@ -1866,20 +1866,20 @@ server:
 
   ingress:
     # -- Enable an ingress resource for the Argo CD server
-    enabled: false
+    enabled: true
     # -- Additional ingress annotations
     annotations: {}
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # -- List of ingress hosts
     ## Argo Ingress.
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
-    hosts: []
-      # - argocd.example.com
+    hosts: 
+      - argocd.demo.kurtmadel.com
 
     # -- List of ingress paths
     paths:
@@ -1909,7 +1909,7 @@ server:
   # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/
   ingressGrpc:
     # -- Enable an ingress resource for the Argo CD server for dedicated [gRPC-ingress]
-    enabled: false
+    enabled: true
     # -- Setup up gRPC ingress to work with an AWS ALB
     isAWSALB: false
     # -- Additional ingress annotations for dedicated [gRPC-ingress]
@@ -1917,7 +1917,7 @@ server:
     # -- Additional ingress labels for dedicated [gRPC-ingress]
     labels: {}
     # -- Defines which ingress controller will implement the resource [gRPC-ingress]
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     awsALB:
       # -- Service type for the AWS ALB gRPC service
@@ -1936,8 +1936,8 @@ server:
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
     ##
-    hosts: []
-      # - argocd.example.com
+    hosts: 
+      - argocd-grpc.demo.kurtmadel.com
 
     # -- List of ingress paths for dedicated [gRPC-ingress]
     paths:
