@@ -6,7 +6,7 @@ spec:
   ports:
   - port: 80
     targetPort: 5678
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: echo
 ---
