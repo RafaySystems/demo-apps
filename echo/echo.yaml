@@ -31,7 +31,7 @@ spec:
       - name: echo
         image: hashicorp/http-echo
         args:
-        - "-text=Blue v2"
+        - "-text=Blue v1"
         ports:
         - containerPort: 5678
 ---
