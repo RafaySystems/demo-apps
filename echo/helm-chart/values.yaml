@@ -1,4 +1,4 @@
-# Default values for helloWorld.
+ho# Default values for helloWorld.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -21,7 +21,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: hellosa
+  name: echo-sa
 
 podSecurityContext: {}
   # fsGroup: 2000
