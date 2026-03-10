@@ -1,33 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo
+  name: {{{ .global.Rafay.WorkloadName }}}
 spec:
   ports:
   - port: 80
     targetPort: 5678
   selector:
-    app: echo
+    app: {{{ .global.Rafay.WorkloadName }}}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: echo
+  name: {{{ .global.Rafay.WorkloadName }}}
 spec:
   selector:
     matchLabels:
-      app: echo
+      app: {{{ .global.Rafay.WorkloadName }}}
   strategy:
     type: Recreate
   replicas: 1
   template:
     metadata:
       labels:
-        app: echo
+        app: {{{ .global.Rafay.WorkloadName }}}
         version: "1.0"
     spec:
       containers:
-      - name: echo
+      - name: {{{ .global.Rafay.WorkloadName }}}
         image: hashicorp/http-echo
         args:
         - "-text=Prod"
@@ -37,9 +37,9 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo-ingress
+  name: {{{ .global.Rafay.WorkloadName }}}
   labels:
-    app: echo
+    app: {{{ .global.Rafay.WorkloadName }}}
 spec:
   ingressClassName: nginx
   tls:
@@ -54,6 +54,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: echo
+                name: {{{ .global.Rafay.WorkloadName }}}
                 port:
                   number: 80
