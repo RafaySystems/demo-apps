@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{{ .global.Rafay.WorkloadName }}}
+  labels:
+    app: {{{ .global.Rafay.WorkloadName }}}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{{ .global.Rafay.WorkloadName }}}-{{{ .global.Rafay.ClusterName }}}.{{{ .global.Rafay.ClusterLabels.ingressDomain }}}
+      secretName: nvidia-tls
+  rules:
+    - host: {{{ .global.Rafay.WorkloadName }}}-{{{ .global.Rafay.ClusterName }}}.{{{ .global.Rafay.ClusterLabels.ingressDomain }}}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{{ .global.Rafay.WorkloadName }}}
+                port:
+                  number: 80
